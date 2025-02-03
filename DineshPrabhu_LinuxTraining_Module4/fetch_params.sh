@@ -18,6 +18,6 @@ awk '
 /frame.time/ {print "\"frame.time\": " substr($0, index($0, $2)) >> "'"$output"'"}
 /wlan.fc.type/ {print "\"wlan.fc.type\": " $2 >> "'"$output"'"}
 /wlan.fc.subtype/ {print "\"wlan.fc.subtype\": " $2 >> "'"$output"'"}
-' "$filename" >> "$output"
+' "$filename"
 
 echo "Extraction complete. See the output in $output"
