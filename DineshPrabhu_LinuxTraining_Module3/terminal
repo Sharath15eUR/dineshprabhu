@@ -1,0 +1,25 @@
+dineshprabhu@ubuntu:~/linuxtraining/mod3$ touch backup_manager.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod3$ nano backup_manager.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod3$ chmod u+x backup_manager.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod3$ bash backup_manager.sh /home/dineshprabhu/Downloads /home/dineshprabhu/linuxtraining/mod3 .txt
+Files to be backed up:
+File: 1mb-examplefile-com.txt, Size: 1048591 bytes
+File: 2mb-examplefile-com.txt, Size: 2097184 bytes
+File: 3mb-examplefile-com.txt, Size: 3145777 bytes
+File: output.txt, Size: 78 bytes
+File: SampleTextFile_100kb.txt, Size: 102180 bytes
+File: SampleTextFile_50kb.txt, Size: 50537 bytes
+Backed up: 1mb-examplefile-com.txt
+Backed up: 2mb-examplefile-com.txt
+Backed up: 3mb-examplefile-com.txt
+Backed up: output.txt
+Backed up: SampleTextFile_100kb.txt
+Backed up: SampleTextFile_50kb.txt
+Backup completed. Report saved to /home/dineshprabhu/linuxtraining/mod3/backup_report.log.
+dineshprabhu@ubuntu:~/linuxtraining/mod3$ cat backup_report.log
+Backup Summary Report
+---------------------
+Total files processed: 6
+Total size of files backed up: 6444347 bytes
+Backup directory: /home/dineshprabhu/linuxtraining/mod3
+Total files backed up: 6
