@@ -1,0 +1,266 @@
+Q1. Create a file and add executable permission to all users.
+
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ touch file1
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ chmod a+x file1
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ ls -l file1
+-rwxrwxr-x 1 dineshprabhu dineshprabhu 0 Jan 22 22:22 file1
+
+Q2. Create a file and remove write permission for group user alone.
+
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ touch file2
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ chmod g-w file2
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ ls -l file2
+-rw-r--r-- 1 dineshprabhu dineshprabhu 0 Jan 22 22:36 file2
+
+Q3. Create a file and add a softlink to the file in different directory.
+
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ mkdir -p dir1/dir2
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ touch dir1/dir2/file3
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ ln -s dir1/dir2/file3 dir1/soft-link
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ ls -l dir1
+total 4
+drwxrwxr-x 2 dineshprabhu dineshprabhu 4096 Jan 22 22:38 dir2
+lrwxrwxrwx 1 dineshprabhu dineshprabhu   15 Jan 22 22:59 soft-link -> dir1/dir2/file3
+
+Q4. Use ps command with options to display all active process running on the system.
+
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.2 167936 12772 ?        Ss   22:19   0:03 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    22:19   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    22:19   0:00 [pool_workqueue_rel
+root           4  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-rcu_g]
+root           5  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-rcu_p]
+root           6  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-slub_]
+root           7  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-netns]
+root           9  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/0:0H-event
+root          10  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/u8:0-ext4-
+root          11  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-mm_pe]
+root          12  0.0  0.0      0     0 ?        I    22:19   0:00 [rcu_tasks_kthread]
+root          13  0.0  0.0      0     0 ?        I    22:19   0:00 [rcu_tasks_rude_kth
+root          14  0.0  0.0      0     0 ?        I    22:19   0:00 [rcu_tasks_trace_kt
+root          15  0.0  0.0      0     0 ?        S    22:19   0:00 [ksoftirqd/0]
+root          17  0.0  0.0      0     0 ?        I    22:19   0:02 [rcu_preempt]
+root          18  0.0  0.0      0     0 ?        S    22:19   0:00 [migration/0]
+root          19  0.0  0.0      0     0 ?        S    22:19   0:00 [idle_inject/0]
+root          20  0.0  0.0      0     0 ?        S    22:19   0:00 [cpuhp/0]
+root          21  0.0  0.0      0     0 ?        S    22:19   0:00 [cpuhp/1]
+root          22  0.0  0.0      0     0 ?        S    22:19   0:00 [idle_inject/1]
+root          23  0.0  0.0      0     0 ?        S    22:19   0:00 [migration/1]
+root          24  0.0  0.0      0     0 ?        S    22:19   0:00 [ksoftirqd/1]
+root          26  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/1:0H-event
+root          27  0.0  0.0      0     0 ?        S    22:19   0:00 [cpuhp/2]
+root          28  0.0  0.0      0     0 ?        S    22:19   0:00 [idle_inject/2]
+root          29  0.0  0.0      0     0 ?        S    22:19   0:00 [migration/2]
+root          30  0.0  0.0      0     0 ?        S    22:19   0:00 [ksoftirqd/2]
+root          31  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/2:0-mm_per
+root          32  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/2:0H-event
+root          33  0.0  0.0      0     0 ?        S    22:19   0:00 [cpuhp/3]
+root          34  0.0  0.0      0     0 ?        S    22:19   0:00 [idle_inject/3]
+root          35  0.0  0.0      0     0 ?        S    22:19   0:00 [migration/3]
+root          36  0.0  0.0      0     0 ?        S    22:19   0:00 [ksoftirqd/3]
+root          43  0.0  0.0      0     0 ?        S    22:19   0:00 [kdevtmpfs]
+root          44  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-inet_]
+root          46  0.0  0.0      0     0 ?        S    22:19   0:00 [kauditd]
+root          47  0.0  0.0      0     0 ?        S    22:19   0:00 [khungtaskd]
+root          48  0.0  0.0      0     0 ?        S    22:19   0:00 [oom_reaper]
+root          50  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-write]
+root          51  0.0  0.0      0     0 ?        S    22:19   0:00 [kcompactd0]
+root          52  0.0  0.0      0     0 ?        SN   22:19   0:00 [ksmd]
+root          54  0.0  0.0      0     0 ?        SN   22:19   0:00 [khugepaged]
+root          55  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-kinte]
+root          56  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-kbloc]
+root          57  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-blkcg]
+root          58  0.0  0.0      0     0 ?        S    22:19   0:00 [irq/9-acpi]
+root          59  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-tpm_d]
+root          60  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-ata_s]
+root          61  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-md]
+root          62  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-md_bi]
+root          63  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-edac-]
+root          64  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-devfr]
+root          65  0.0  0.0      0     0 ?        S    22:19   0:00 [watchdogd]
+root          67  0.0  0.0      0     0 ?        S    22:19   0:00 [kswapd0]
+root          68  0.0  0.0      0     0 ?        S    22:19   0:00 [ecryptfs-kthread]
+root          70  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-kthro]
+root          71  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-acpi_]
+root          75  0.0  0.0      0     0 ?        S    22:19   0:00 [scsi_eh_0]
+root          76  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-scsi_]
+root          77  0.0  0.0      0     0 ?        S    22:19   0:00 [scsi_eh_1]
+root          78  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-scsi_]
+root          79  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/u11:1-even
+root          82  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-mld]
+root          83  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-ipv6_]
+root          85  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/2:1H-kbloc
+root          86  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/3:2-mm_per
+root          92  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-kstrp]
+root          94  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/u13:0]
+root          95  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/u14:0]
+root          96  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/u15:0]
+root          97  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/u16:0]
+root          98  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/u17:0]
+root         112  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-charg]
+root         133  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/1:1H-kbloc
+root         136  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/0:1H-kbloc
+root         158  0.0  0.0      0     0 ?        S    22:19   0:00 [scsi_eh_2]
+root         159  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-scsi_]
+root         174  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/0:2-cgroup
+root         195  0.0  0.0      0     0 ?        S    22:19   0:01 [jbd2/sda3-8]
+root         196  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-ext4-]
+root         236  0.0  0.3  48476 19584 ?        S<s  22:19   0:00 /lib/systemd/system
+root         264  0.0  0.0      0     0 ?        I    22:19   0:00 [kworker/1:2-mm_per
+root         265  0.1  0.0      0     0 ?        I    22:19   0:02 [kworker/u10:2-even
+root         267  0.0  0.0      0     0 ?        S    22:19   0:00 [irq/18-vmwgfx]
+root         268  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-ttm]
+root         277  0.0  0.1  27176  6996 ?        Ss   22:19   0:01 /lib/systemd/system
+root         335  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/R-crypt]
+root         355  0.0  0.0      0     0 ?        I<   22:19   0:00 [kworker/3:2H-kbloc
+systemd+     472  0.1  0.1  14836  6784 ?        Ss   22:19   0:05 /lib/systemd/system
+systemd+     476  0.0  0.2  26068 14168 ?        Ss   22:19   0:00 /lib/systemd/system
+systemd+     478  0.0  0.1  89388  7296 ?        Ssl  22:19   0:00 /lib/systemd/system
+root         582  0.0  0.1 248564  7404 ?        Ssl  22:19   0:00 /usr/libexec/accoun
+root         584  0.0  0.0   2816  1920 ?        Ss   22:19   0:00 /usr/sbin/acpid
+avahi        588  0.0  0.0   7628  3840 ?        Ss   22:19   0:00 avahi-daemon: runni
+root         591  0.0  0.0  18152  2816 ?        Ss   22:19   0:00 /usr/sbin/cron -f -
+message+     592  0.0  0.1  10916  6144 ?        Ss   22:19   0:01 @dbus-daemon --syst
+root         597  0.0  0.3 269804 18652 ?        Ssl  22:19   0:00 /usr/sbin/NetworkMa
+root         608  0.0  0.0  82700  3840 ?        Ssl  22:19   0:00 /usr/sbin/irqbalanc
+root         614  0.0  0.4  49716 20976 ?        Ss   22:19   0:00 /usr/bin/python3 /u
+root         618  0.0  0.2 236996 10104 ?        Ssl  22:19   0:02 /usr/libexec/polkit
+root         621  0.0  0.1 248752  7424 ?        Ssl  22:19   0:00 /usr/libexec/power-
+syslog       623  0.0  0.1 222404  5888 ?        Ssl  22:19   0:00 /usr/sbin/rsyslogd 
+root         629  0.0  0.1 245228  6656 ?        Ssl  22:19   0:00 /usr/libexec/switch
+root         636  0.0  0.1  40096  8040 ?        Ss   22:19   0:00 /lib/systemd/system
+root         645  0.0  0.2 393000 12832 ?        Ssl  22:19   0:00 /usr/libexec/udisks
+root         646  0.0  0.1  16504  6528 ?        Ss   22:19   0:00 /sbin/wpa_supplican
+avahi        658  0.0  0.0   7444  1300 ?        S    22:19   0:00 avahi-daemon: chroo
+root         698  0.0  0.2 317972 12256 ?        Ssl  22:19   0:00 /usr/sbin/ModemMana
+root         702  0.0  0.2  81672 13696 ?        Ss   22:19   0:00 /usr/sbin/cupsd -l
+root         707  0.0  0.4 126808 23552 ?        Ssl  22:19   0:00 /usr/bin/python3 /u
+root         732  0.0  0.1 250004  8960 ?        Ssl  22:19   0:00 /usr/sbin/gdm3
+root         784  0.0  0.2 172636 11392 ?        Ssl  22:19   0:00 /usr/sbin/cups-brow
+kernoops     826  0.0  0.0  13092  2208 ?        Ss   22:19   0:00 /usr/sbin/kerneloop
+kernoops     835  0.0  0.0  13092  2208 ?        Ss   22:19   0:00 /usr/sbin/kerneloop
+rtkit        862  0.0  0.0 154004  3328 ?        SNsl 22:19   0:00 /usr/libexec/rtkit-
+root         984  0.0  0.1 251012  8832 ?        Ssl  22:19   0:00 /usr/libexec/upower
+root         990  0.0  0.4 306884 20456 ?        Ssl  22:19   0:00 /usr/libexec/packag
+colord      1143  0.0  0.2 253992 13020 ?        Ssl  22:19   0:00 /usr/libexec/colord
+root        1205  0.0  0.2 179380 10416 ?        Sl   22:19   0:00 gdm-session-worker 
+dineshp+    1214  0.0  0.2  19080 11520 ?        Ss   22:20   0:01 /lib/systemd/system
+dineshp+    1215  0.0  0.1 104380  5652 ?        S    22:20   0:00 (sd-pam)
+dineshp+    1221  0.0  0.1  48224  6528 ?        S<sl 22:20   0:00 /usr/bin/pipewire
+dineshp+    1222  0.0  0.1  32112  6656 ?        Ssl  22:20   0:00 /usr/bin/pipewire-m
+dineshp+    1223  0.0  0.5 1955356 27316 ?       S<sl 22:20   0:00 /usr/bin/pulseaudio
+dineshp+    1239  0.0  0.1   9852  5760 ?        Ss   22:20   0:01 /usr/bin/dbus-daemo
+dineshp+    1241  0.0  0.1 249564  7596 ?        Sl   22:20   0:00 /usr/bin/gnome-keyr
+dineshp+    1244  0.0  0.1 545568  7552 ?        Ssl  22:20   0:00 /usr/libexec/xdg-do
+dineshp+    1247  0.0  0.1 244808  5888 ?        Ssl  22:20   0:00 /usr/libexec/xdg-pe
+dineshp+    1249  0.0  0.1 171048  5888 tty2     Ssl+ 22:20   0:00 /usr/libexec/gdm-wa
+root        1257  0.0  0.0   2796  1792 ?        Ss   22:20   0:00 fusermount3 -o rw,n
+dineshp+    1258  0.0  0.3 231700 15872 tty2     Sl+  22:20   0:00 /usr/libexec/gnome-
+dineshp+    1311  0.0  0.1 100568  5376 ?        Ssl  22:20   0:00 /usr/libexec/gnome-
+dineshp+    1323  0.0  0.1 249304  7808 ?        Ssl  22:20   0:00 /usr/libexec/gvfsd
+dineshp+    1333  0.0  0.1 380896  6656 ?        Sl   22:20   0:00 /usr/libexec/gvfsd-
+dineshp+    1343  0.0  0.3 601528 17280 ?        Ssl  22:20   0:00 /usr/libexec/gnome-
+dineshp+    1368  0.0  0.1 309620  7552 ?        Sl   22:20   0:00 /usr/libexec/at-spi
+dineshp+    1372 13.3  7.5 5261460 377024 ?      Ssl  22:20   5:52 /usr/bin/gnome-shel
+dineshp+    1384  0.0  0.0   8568  4352 ?        S    22:20   0:00 /usr/bin/dbus-daemo
+dineshp+    1417  0.0  0.3 582932 18176 ?        Sl   22:20   0:00 /usr/libexec/gnome-
+dineshp+    1423  0.0  0.5 400876 25472 ?        Ssl  22:20   0:00 /usr/libexec/evolut
+dineshp+    1430  0.0  0.8 590644 40448 ?        Sl   22:20   0:00 /usr/libexec/goa-da
+dineshp+    1431  0.0  0.2 324576 10240 ?        Ssl  22:20   0:00 /usr/libexec/gvfs-u
+dineshp+    1438  0.0  0.6 849184 30976 ?        Ssl  22:20   0:00 /usr/libexec/evolut
+dineshp+    1439  0.0  0.1 323868  8064 ?        Ssl  22:20   0:00 /usr/libexec/gvfs-a
+dineshp+    1444  0.0  0.1 245116  6528 ?        Ssl  22:20   0:00 /usr/libexec/gvfs-m
+dineshp+    1450  0.0  0.1 245292  6784 ?        Ssl  22:20   0:00 /usr/libexec/gvfs-g
+dineshp+    1459  0.0  0.3 347060 15104 ?        Sl   22:20   0:00 /usr/libexec/goa-id
+dineshp+    1464  0.0  0.1 246072  7040 ?        Ssl  22:20   0:00 /usr/libexec/gvfs-g
+dineshp+    1475  0.0  0.1 156972  5760 ?        Ssl  22:20   0:00 /usr/libexec/dconf-
+dineshp+    1478  0.0  0.5 754652 28928 ?        Ssl  22:20   0:00 /usr/libexec/evolut
+dineshp+    1481  0.0  0.1 171708  6528 ?        Ssl  22:20   0:00 /usr/libexec/gvfsd-
+dineshp+    1497  0.0  0.1 323396  8704 ?        Sl   22:20   0:00 /usr/libexec/gvfsd-
+dineshp+    1506  0.0  0.5 2677680 28496 ?       Sl   22:20   0:00 /usr/bin/gjs /usr/s
+dineshp+    1508  0.0  0.1 162688  7552 ?        Sl   22:20   0:00 /usr/libexec/at-spi
+dineshp+    1521  0.0  0.0   2892  1536 ?        Ss   22:20   0:00 sh -c /usr/bin/ibus
+dineshp+    1522  0.0  0.1 319076  6912 ?        Ssl  22:20   0:00 /usr/libexec/gsd-a1
+dineshp+    1525  0.0  0.5 607176 25860 ?        Ssl  22:20   0:00 /usr/libexec/gsd-co
+dineshp+    1528  0.0  0.3 384120 16256 ?        Ssl  22:20   0:00 /usr/libexec/gsd-da
+dineshp+    1530  0.1  0.2 323952 12060 ?        Sl   22:20   0:04 /usr/bin/ibus-daemo
+dineshp+    1533  0.0  0.1 320580  7936 ?        Ssl  22:20   0:00 /usr/libexec/gsd-ho
+dineshp+    1540  0.0  0.4 422956 22020 ?        Ssl  22:20   0:00 /usr/libexec/gsd-ke
+dineshp+    1547  0.0  0.5 872812 26884 ?        Ssl  22:20   0:00 /usr/libexec/gsd-me
+dineshp+    1549  0.0  0.5 532920 25732 ?        Ssl  22:20   0:00 /usr/libexec/gsd-po
+dineshp+    1553  0.0  0.2 258516 11392 ?        Ssl  22:20   0:00 /usr/libexec/gsd-pr
+dineshp+    1554  0.0  0.1 466516  6912 ?        Ssl  22:20   0:00 /usr/libexec/gsd-rf
+dineshp+    1559  0.0  0.1 244948  6400 ?        Ssl  22:20   0:00 /usr/libexec/gsd-sc
+dineshp+    1560  0.0  0.2 474468 10624 ?        Ssl  22:20   0:00 /usr/libexec/gsd-sh
+dineshp+    1561  0.0  0.1 394688  8320 ?        Ssl  22:20   0:00 /usr/libexec/gsd-sm
+dineshp+    1564  0.0  0.1 327992  9728 ?        Ssl  22:20   0:00 /usr/libexec/gsd-so
+dineshp+    1567  0.0  0.4 423540 22660 ?        Ssl  22:20   0:00 /usr/libexec/gsd-wa
+dineshp+    1578  0.0  1.2 831224 64000 ?        Sl   22:20   0:00 /usr/libexec/evolut
+dineshp+    1582  0.0  0.1 232272  7040 ?        Sl   22:20   0:00 /usr/libexec/gsd-di
+dineshp+    1587  0.0  0.1 172140  7296 ?        Sl   22:20   0:00 /usr/libexec/ibus-m
+dineshp+    1590  0.0  0.5 356480 29192 ?        Sl   22:20   0:02 /usr/libexec/ibus-e
+dineshp+    1598  0.0  0.1 245916  7296 ?        Sl   22:20   0:00 /usr/libexec/ibus-p
+dineshp+    1655  0.0  0.2 351016 14720 ?        Sl   22:20   0:00 /usr/libexec/gsd-pr
+dineshp+    1732  0.0  0.1 172140  7296 ?        Sl   22:20   0:01 /usr/libexec/ibus-e
+dineshp+    1775  0.0  0.2 632460 14080 ?        Ssl  22:20   0:00 /usr/libexec/xdg-de
+dineshp+    1784  0.0  0.5 737212 29168 ?        Ssl  22:20   0:00 /usr/libexec/xdg-de
+dineshp+    1787  0.0  0.6 654396 32748 ?        SNsl 22:20   0:00 /usr/libexec/tracke
+dineshp+    1810  0.0  0.5 2612292 27368 ?       Sl   22:20   0:00 /usr/bin/gjs /usr/s
+dineshp+    1827  0.0  1.2 2865468 61144 ?       Sl   22:20   0:02 gjs /usr/share/gnom
+dineshp+    1842  0.0  0.5 353116 25476 ?        Ssl  22:20   0:00 /usr/libexec/xdg-de
+root        1873  0.0  0.0      0     0 ?        I    22:20   0:00 [kworker/u10:3-even
+dineshp+    1890  0.0  1.1 904992 59544 ?        Sl   22:20   0:00 /usr/bin/gnome-cale
+dineshp+    1894  0.0  0.8 402528 40896 ?        SLl  22:20   0:00 /usr/bin/seahorse -
+dineshp+    1895  0.3  1.0 827468 54044 ?        Rsl  22:20   0:09 /usr/libexec/gnome-
+dineshp+    1982  0.0  0.1  19796  5120 pts/0    Ss   22:20   0:00 bash
+dineshp+    2024  0.0  0.5 427572 26244 ?        Sl   22:21   0:00 update-notifier
+root        2149  0.0  0.0      0     0 ?        I    22:25   0:00 [kworker/1:0-cgroup
+root        2238  0.1  0.0      0     0 ?        I    22:25   0:03 [kworker/u9:0-event
+dineshp+    2252 11.9  8.8 12080764 441604 ?     Sl   22:25   4:35 /snap/firefox/4848/
+dineshp+    2479  0.0  0.9 208364 48640 ?        Sl   22:25   0:00 /snap/firefox/4848/
+dineshp+    2538  0.0  1.9 2434176 95120 ?       Sl   22:25   0:02 /snap/firefox/4848/
+dineshp+    2565  0.3  2.9 2476068 147244 ?      Sl   22:25   0:08 /snap/firefox/4848/
+dineshp+    2590  0.0  2.2 2444296 110584 ?      Sl   22:25   0:02 /snap/firefox/4848/
+dineshp+    2621  0.0  0.4 1313340 21544 ?       Sl   22:25   0:01 /usr/bin/snap userd
+root        2633  0.3  0.7 1543404 36088 ?       Ssl  22:25   0:08 /usr/lib/snapd/snap
+root        3092  0.0  0.0      0     0 ?        I<   22:26   0:00 [kworker/3:0H-kbloc
+dineshp+    3301  0.0  1.2 343720 60416 ?        Sl   22:26   0:00 /snap/firefox/4848/
+dineshp+    3427 20.0 13.3 3069940 663684 ?      Sl   22:26   7:38 /snap/firefox/4848/
+dineshp+    4134  0.0  0.2  39128 11776 ?        Ss   22:26   0:00 /snap/snapd-desktop
+dineshp+    4304  0.0  0.6 431908 31064 ?        Sl   22:26   0:00 /snap/snapd-desktop
+root        4370  0.0  0.0      0     0 ?        I    22:26   0:00 [kworker/3:0-events
+dineshp+    4686  0.0  1.2 207456 64704 ?        S    22:31   0:00 /usr/bin/Xwayland :
+dineshp+    4695  0.0  1.6 539848 80404 ?        Ssl  22:31   0:00 /usr/libexec/gsd-xs
+dineshp+    4732  0.0  0.5 202848 25004 ?        Sl   22:31   0:00 /usr/libexec/ibus-x
+dineshp+    4911  0.6  1.5 1007428 75728 ?       Sl   22:32   0:12 /usr/bin/nautilus -
+root        4971  0.0  0.0      0     0 ?        I    22:32   0:01 [kworker/0:0-mm_per
+dineshp+    4985  0.0  1.4 2395480 74496 ?       Sl   22:32   0:00 /snap/firefox/4848/
+root        5024  0.0  0.0      0     0 ?        I    22:32   0:00 [kworker/u8:2-ext4-
+root        5025  0.0  0.0      0     0 ?        I    22:32   0:00 [kworker/2:1-events
+dineshp+    5026  0.0  1.4 2395480 74368 ?       Sl   22:32   0:00 /snap/firefox/4848/
+dineshp+    5030  0.0  1.4 2395480 73600 ?       Sl   22:32   0:00 /snap/firefox/4848/
+dineshp+    5180  0.0  1.2 381876 62152 ?        Sl   22:34   0:00 /snap/firefox/4848/
+root        5281  0.0  0.0      0     0 ?        I    22:35   0:00 [kworker/u9:1-event
+root        5670  0.0  0.0      0     0 ?        I    22:41   0:00 [kworker/u9:2-flush
+root        5847  0.0  0.0      0     0 ?        I    22:47   0:00 [kworker/u11:3-even
+root        5858  0.0  0.0      0     0 ?        I    22:48   0:00 [kworker/u12:1-even
+root        6034  0.1  0.0      0     0 ?        I    22:55   0:00 [kworker/u12:0-even
+root        6052  0.1  0.0      0     0 ?        I    22:56   0:00 [kworker/u10:1-even
+root        6093  0.0  0.0      0     0 ?        I    22:58   0:00 [kworker/u12:3]
+root        6103  0.1  0.0      0     0 ?        I    22:59   0:00 [kworker/u11:0-even
+dineshp+    6191  0.0  0.0  21328  3456 pts/0    R+   23:04   0:00 ps aux
+
+Q5. Create 3 files in a dir1 and re-direct the output of list command with sorted by timestamp of the files to a file.
+
+dineshprabhu@ubuntu:~/linuxtraining/mod1$ cd dir1
+dineshprabhu@ubuntu:~/linuxtraining/mod1/dir1$ touch fileA fileB fileC
+dineshprabhu@ubuntu:~/linuxtraining/mod1/dir1$ ls -lt  > outputfile
+dineshprabhu@ubuntu:~/linuxtraining/mod1/dir1$ cat outputfile
+total 4
+-rw-rw-r-- 1 dineshprabhu dineshprabhu    0 Jan 22 23:11 outputfile
+-rw-rw-r-- 1 dineshprabhu dineshprabhu    0 Jan 22 23:09 fileA
+-rw-rw-r-- 1 dineshprabhu dineshprabhu    0 Jan 22 23:09 fileB
+-rw-rw-r-- 1 dineshprabhu dineshprabhu    0 Jan 22 23:09 fileC
+lrwxrwxrwx 1 dineshprabhu dineshprabhu   15 Jan 22 22:59 soft-link -> dir1/dir2/file3
+drwxrwxr-x 2 dineshprabhu dineshprabhu 4096 Jan 22 22:38 dir2

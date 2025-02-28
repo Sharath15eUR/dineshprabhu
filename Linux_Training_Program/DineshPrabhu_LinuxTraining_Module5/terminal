@@ -1,0 +1,91 @@
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ tree parent_dir
+locales-launch: Data of en_IN locale not found, generating, please wait...
+parent_dir
+├── file5.txt
+├── subdir1
+│   ├── file1.txt
+│   └── file2.txt
+└── subdir2
+    ├── file3.txt
+    └── file4.txt
+
+3 directories, 5 files
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ touch file_analyser.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ nano file_analyser.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh -d parent_dir -k linux
+Keyword 'linux' not found in 'parent_dir/file5.txt'
+Found 'linux' in 'parent_dir/subdir1/file1.txt'
+Found 'linux' in 'parent_dir/subdir1/file2.txt'
+Found 'linux' in 'parent_dir/subdir2/file3.txt'
+Keyword 'linux' not found in 'parent_dir/subdir2/file4.txt'
+-----------------------------------
+Script name: ./file_analyser.sh
+Number of arguments: 4
+Exit status of the last command: 0
+All arguments: -d parent_dir -k linux
+-----------------------------------
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh -f parent_dir/subdir1/file1.txt -k OS
+Found 'OS' in 'parent_dir/subdir1/file1.txt'
+-----------------------------------
+Script name: ./file_analyser.sh
+Number of arguments: 4
+Exit status of the last command: 0
+All arguments: -f parent_dir/subdir1/file1.txt -k OS
+-----------------------------------
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh --help
+Usage: ./file_analyser.sh [options]
+Options:
+    -d <directory>   Directory to search
+    -k <keyword>     Keyword to search
+    -f <file>        File to search directly
+    --help           Display this help menu
+Example usage:
+    # Recursively search a directory for a keyword
+    ./file_analyser.sh -d logs -k error
+    # Search for a keyword in a file
+    ./file_analyser.sh -f script.sh -k TODO
+    # Display the help menu
+    ./file_analyser.sh --help
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh -d file6.txt -k linux
+Error: Directory 'file6.txt' does not exist.
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh -f parent_dir/file5.txt -k ""
+Error: Missing required arguments.
+Usage: ./file_analyser.sh [options]
+Options:
+    -d <directory>   Directory to search
+    -k <keyword>     Keyword to search
+    -f <file>        File to search directly
+    --help           Display this help menu
+Example usage:
+    # Recursively search a directory for a keyword
+    ./file_analyser.sh -d logs -k error
+    # Search for a keyword in a file
+    ./file_analyser.sh -f script.sh -k TODO
+    # Display the help menu
+    ./file_analyser.sh --help
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh
+Usage: ./file_analyser.sh [options]
+Options:
+    -d <directory>   Directory to search
+    -k <keyword>     Keyword to search
+    -f <file>        File to search directly
+    --help           Display this help menu
+Example usage:
+    # Recursively search a directory for a keyword
+    ./file_analyser.sh -d logs -k error
+    # Search for a keyword in a file
+    ./file_analyser.sh -f script.sh -k TODO
+    # Display the help menu
+    ./file_analyser.sh --help
+dineshprabhu@ubuntu:~/linuxtraining/mod5$ ./file_analyser.sh -d parent_dir -k test
+Keyword 'test' not found in 'parent_dir/file5.txt'
+Keyword 'test' not found in 'parent_dir/subdir1/file1.txt'
+Keyword 'test' not found in 'parent_dir/subdir1/file2.txt'
+Keyword 'test' not found in 'parent_dir/subdir2/file3.txt'
+Keyword 'test' not found in 'parent_dir/subdir2/file4.txt'
+-----------------------------------
+Script name: ./file_analyser.sh
+Number of arguments: 4
+Exit status of the last command: 0
+All arguments: -d parent_dir -k test
+-----------------------------------

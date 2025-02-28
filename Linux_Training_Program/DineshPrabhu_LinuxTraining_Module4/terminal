@@ -1,0 +1,28 @@
+For the attached file, write a bash script which should take the file as input and have to go through it line by line and need to generate an output file (say output.txt) with listings of following parameters fetched from the input file.
+
+Params expected to be fetched from input.txt file : "frame.time", "wlan.fc.type", "wlan.fc.subtype"
+Sample output expected in output.txt:
+
+"frame.time": "Nov 14, 2024 11:44:48.219200000 India Standard Time",
+"wlan.fc.type": "1","wlan.fc.subtype": "9"
+"frame.time": "Nov 14, 2024 11:44:48.219208000 India Standard Time",
+"wlan.fc.type": "0","wlan.fc.subtype": "1",
+and so on.
+
+
+
+dineshprabhu@ubuntu:~/linuxtraining/mod4$ head input.txt
+[
+  {
+    "_index": "packets-2024-12-31",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "23",
+          "frame.time": "Dec 31, 2024 12:50:25.890970000 India Standard Time",
+dineshprabhu@ubuntu:~/linuxtraining/mod4$ touch fetch_params.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod4$ nano fetch_params.sh
+dineshprabhu@ubuntu:~/linuxtraining/mod4$ bash fetch_params.sh input.txt
+Extraction complete. See the output in output.txt
