@@ -41,3 +41,34 @@ file2                                                                           
 ```bash
 cp -r /source_folder /destination_folder
 ```
+### Q2. Host a FTP and SFTP server and try PUT and GET operations.
+FTP stands for _**File Transfer Protocol**_ and SFTP stands for _**Secure File Transfer Protocol**_ which is a more secure method of performing the latter command which is used to transfer file over a network in a fast and secure manner.
+In order to host a FTP server in Ubuntu, the `vsftpd` package needs to be installed and configured.
+
+**Installation and Configuration Commands:**
+```
+sudo apt-get update
+sudo apt-get install vsftpd
+sudo service vsftpd status
+sudo nano /etc/vsftpd.conf
+->local_enable=YES
+->write_enable=YES
+->chroot_local_user=YES
+->chroot_list_enable=YES
+->chroot_list_file=/etc/vsftpd.chroot_list
+touch vsftpd.chroot_list(To add list of users having access to the server)
+sudo adduser dinesh
+sudo mkdir /home/dinesh/ftp
+sudo chmod a-w /home/dinesh/ftp
+sudo mkdir /home/dinesh/ftp/upload
+sudo chown dinesh:dinesh /home/dinesh/ftp/upload
+echo "My FTP Server" | sudo tee /home/dinesh/ftp/upload/demo.txt
+sudo ls -la /home/dinesh/ftp
+echo "dinesh" | sudo tee -a /etc/vsftpd.userlist
+sudo systemctl restart vsftpd
+```
+
+
+We can access the server using the command `ftp <ip_address>`. Server can be accessed using normal linux commands.In order to get a file from the server, `get filename` is used which saves the file from the server to the present working directory
+
+Alternatively, the server can also be accessed from Windows by connecting to `ftp://ip_address` from the File Explorer and files from Windows can be put into the server
