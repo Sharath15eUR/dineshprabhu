@@ -1,12 +1,12 @@
 ### Environment Configuration:
 
 - Ubuntu VM (as local machine) - dineshprabhu@192.168.1.10 
-- Windows 11( as remote machine) - admin@192.168.1.6
+- Windows 11 ( as remote machine) - admin@192.168.1.6
 
 
-## Q1. Consider a case, a folder has multiple files and how would copy it to destination machine path (Try using SCP, cp options in Linux)
+### Q1. Consider a case, a folder has multiple files and how would copy it to destination machine path (Try using scp, cp options in Linux)
 
-### Using SCP to copy a folder from local machine onto the remote machine
+### Using `scp` to copy a folder from local machine onto the remote machine
 
 ```
 dineshprabhu@ubuntu:~$ scp -r ~/linuxtraining/mod1 admin@192.168.1.6:C:/Users/admin/Downloads
@@ -19,7 +19,7 @@ file3                                             100%    0     0.0KB/s   00:00
 fileC                                             100%    0     0.0KB/s   00:00    
 fileA                                             100%    0     0.0KB/s   00:00    
 ```
-### Using SCP to copy a folder from remote machine onto the local machine
+### Using `scp` to copy a folder from remote machine onto the local machine
 
 ```
 PS C:\Users\admin> scp -r C:/Users/admin/Downloads/mod1 dineshprabhu@ubuntu:~/Downloads
