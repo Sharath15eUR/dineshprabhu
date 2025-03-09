@@ -42,8 +42,6 @@ file2                                                                           
 cp -r /source_folder /destination_folder
 ```
 ### Q2. Host a FTP and SFTP server and try PUT and GET operations.
-FTP stands for _**File Transfer Protocol**_ and SFTP stands for _**Secure File Transfer Protocol**_ which is a more secure method of performing the latter command which is used to transfer file over a network in a fast and secure manner.
-In order to host a FTP server in Ubuntu, the `vsftpd` package needs to be installed and configured.
 
 **Installation and Configuration Commands:**
 ```
@@ -73,11 +71,41 @@ sudo systemctl restart vsftpd
 ```
 
 
-We can access the server using the command `ftp <ip_address>`. Server can be accessed using normal linux commands.In order to get a file from the server, `get filename` is used which saves the file from the server to the present working directory
+We can access the server in windows using the command `ftp <ip_address>`. In order to get a file from the server, `get filename` is used which saves the file from the server to the present working directory. In order to upload a file to the server, `put filename` is used
+```
+PS C:\WINDOWS\system32> ftp 192.168.1.10
+Connected to 192.168.1.10.
+220 (vsFTPd 3.0.5)
+200 Always in UTF8 mode.
+User (192.168.1.10:(none)): dinesh
+331 Please specify the password.
+Password:
 
-Alternatively, the server can also be accessed from Windows by connecting to `ftp://ip_address` from the File Explorer and files from Windows can be put into the server
+230 Login successful.
+ftp> get demo.txt
+local: demo.txt remote: demo.txt
+229 Entering Extended Passive Mode (|||61874|)
+150 Opening BINARY mode data connection for demo.txt (429 bytes).
+100% |*******************************************************************************************************************************************|   429        4.87 MiB/s    00:00 ETA
+226 Transfer complete.
+429 bytes received in 00:00 (687.92 KiB/s)
+ftp> put rough.txt 
+local: rough.txt remote: rough.txt
+229 Entering Extended Passive Mode (|||12113|)
+150 Ok to send data.
+100% |*******************************************************************************************************************************************|   429       19.26 KiB/s    00:00 ETA
+226 Transfer complete.
+429 bytes sent in 00:00 (18.83 KiB/s)
+ftp> bye
+221 Goodbye.
+```
 
-## Q3. Explore with Wireshark/TCP-dump/cisco packet tracer tools and learn about packets filters
+Alternatively, the server can also be accessed from Windows by connecting to `ftp://ip_address` from the File Explorer.
+
+### Q3. Explore with Wireshark/TCP-dump/cisco packet tracer tools and learn about packets filters
+
+#### Using `tcpdump`:
+
 ```
 dineshprabhu@ubuntu:~$ sudo tcpdump -i enp0s3
 [sudo] password for dineshprabhu: 
@@ -118,9 +146,9 @@ listening on enp0s3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 ```
 
 
-## Q4. Understand linux utility commands like - ping, arp (Understand each params from ifconfig output)
+### Q4. Understand linux utility commands like - ping, arp (Understand each params from ifconfig output)
 
-ping:
+#### `ping`:
 ```
 dineshprabhu@ubuntu:~$ ping embedur.ai
 PING embedur.ai (162.159.136.54) 56(84) bytes of data.
@@ -183,7 +211,7 @@ PING embedur.ai (162.159.137.54) 128(156) bytes of data.
 rtt min/avg/max/mdev = 27.690/29.129/31.236/1.239 ms
 ```
 
-arp:
+#### `arp`:
 ```
 dineshprabhu@ubuntu:~$ arp -a
 _gateway (10.0.2.2) at 52:55:0a:00:02:02 [ether] on enp0s3
@@ -193,7 +221,7 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.2.2                 ether   52:55:0a:00:02:02   C                     enp0s3
 10.0.2.3                 ether   52:55:0a:00:02:03   C                     enp0s3
 ```
-ifconfig:
+#### `ifconfig`:
 ```
 dineshprabhu@ubuntu:~$ ifconfig
 enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -220,15 +248,14 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 ```
 
 
-## Q5. Understand what happens if a duplicate IPs configured in a network.
+### Q5. Understand what happens if a duplicate IPs configured in a network.
 Duplicate IP address conflict is a condition where 2 devices have the same IP addresses assigned to them .
 
-Duplicate IP conflicts arise in 2 situations mostly :
+Duplicate IP conflicts arise in 2 situations mostly:
 1. When two devices are statically (manually) assigned the same IP 
 2. When the same IP which is manually assigned is also there in the DHCP pool, so when a device boots and gets the same IP from the DHCP pool duplicate IP conflict occurs
 
 - The devices might have network connectivity issues and the network traffic will get disturbed and the routers will disable one of the devices  
-- In OS like Windows,Linux or MacOS, if there are duplicate IP detections, they pop an error stating “has detected an IP address conflict”.
 - It also causes a ARP table instability. Since ARP maps IP Addresses to MAC address, conflicting devices keep updating their MAC in the ARP table causing incorrect data routing. And thus this can lead to sending packets to a wrong device or dropped packets.
 
 Some ways to detect and prevent duplicate IP addresses are:  
@@ -237,42 +264,41 @@ Some ways to detect and prevent duplicate IP addresses are:
 3. Re-assigning a unique IP to static IP devices is also one solution.
 4. In larger networks, Dynamic ARP Inspection (DAI) can be enabled to prevent unauthorized ARP modifications, reducing the risk of conflicts and spoofing attacks.
 
-## Q6. Understand how to access remote system using (VNC viewer, Anydesk,Teamviewer)
+### Q6. Understand how to access remote system using (VNC viewer, Anydesk,Teamviewer)
 
-## VNC Viewer: 
-- Used to connect to remote system
+### VNC Viewer: 
 - On the remote computer, install the VNC server and on the local device install the VNC Viewer. 
 - Setup the VNC server on the remote computer by providing password for access. 
 - Connect using your RealVNC account and select the remote computer to connect. Use the password to authenticate. 
 - It has a criteria that it should be connected to a same lan or wifi network
-- But it is less secure since no encryption is done only the password is there to protect data.
+- But it is less secure since no encryption is done, only the password is there to protect data.
 
-## Anydesk:
+### Anydesk:
 - Download and install Anydesk on both the computers.  
 - Share the access code shown on the remote computer to the local computer user.   
 - Enter the access code on the local machine and accept the connection request on the remote computer to establish control of the remote computer.  
 - No need of common LAN, works on internet
-- It uses AES(more secured than VNC)
+- It uses AES (more secured than VNC)
 
-## Teamviewer:
+### Teamviewer:
 - Install Teamviewer on both the remote and local devices.  
-- Share the iD and the password of the remote device to the local machine user.  
+- Share the ID and the password of the remote device to the local machine user.  
 - Enter the ID and authenticate using the password to establish control and start the session.  
   
-## Remote Desktop Connection:  
+### Remote Desktop Connection:  
 - Built in tool in some windows edition
 - Very much secured and configured
 - Need a common lan or wifi
 
-## Q7. Check if default gateway is reachable or not and understand about default gateways
-Default Gateway: <br>
+### Q7. Check if default gateway is reachable or not and understand about default gateways
 The default gateway is the router or network device that connects your computer to other networks, including the internet.
 It acts as a bridge between your local network (LAN) and the outside world (WAN/Internet).
 
-## Q8) Check iwconfig/ifconfig to understand in detail about network interfaces (check about interface speed, MTU and other parameters)
+### Q8. Check iwconfig/ifconfig to understand in detail about network interfaces (check about interface speed, MTU and other parameters)
 
-ifconfig:
-```dineshprabhu@ubuntu:~$ ifconfig
+### `ifconfig`:
+```
+dineshprabhu@ubuntu:~$ ifconfig
 enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
         inet6 2401:4900:8827:a7c6:27d2:a219:217b:1a91  prefixlen 64  scopeid 0x0<global>
@@ -296,7 +322,7 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-iwconfig:
+### `iwconfig`:
 ```
 dineshprabhu@ubuntu:~$ iwconfig
 lo        no wireless extensions.
@@ -304,19 +330,15 @@ lo        no wireless extensions.
 enp0s3    no wireless extensions.
 ```
 
-## Q10. Explain how DHCP server assigns IP addresses to devices in your network
+### Q10. Explain how DHCP server assigns IP addresses to devices in your network
 A DHCP server automatically assigns IP addresses and other network configurations to devices over a network. This eliminates the need for a manual IP assignment and ensure there is no conflicts regarding the same. 
 Whenever a device wants to connect to a network , it undergoes DORA process to get IP address using DHCP :
 
-DORA PROCESS :
-
-1. DISCOVER -  if a client device has no IP address yet , it sends a DHCP discover message as a broadcast to find a DHCP server.This message is sent to all available DHCP servers in the network.
-
-2. OFFER -  dhcp server responds with a ip address along with subnet mask ,duration of ip that device can hold (lease time) , gateway ip through DHCPOFFER message.
-
-3. REQUEST - the device will accept the ip provided from the dhcp server, and it will notify all the other dhcp servers taht this particular ip is assigned to that device .Other dhcp servers will not use that to another device untill this device duration ends through DHCPREQUEST message.
-
-4. ACKNOWLEDGMENT -  The DHCP confirms the assignment by sending a DHCP acknowledgement message.
+### DORA Process :
+1. Discover -  if a client device has no IP address yet , it sends a DHCP discover message as a broadcast to find a DHCP server.This message is sent to all available DHCP servers in the network.
+2. Offer -  dhcp server responds with a ip address along with subnet mask ,duration of ip that device can hold (lease time) , gateway ip through DHCPOFFER message.
+3. Request - the device will accept the ip provided from the dhcp server, and it will notify all the other dhcp servers taht this particular ip is assigned to that device .Other dhcp servers will not use that to another device untill this device duration ends through DHCPREQUEST message.
+4. Acknowledgement -  The DHCP confirms the assignment by sending a DHCP acknowledgement message.
 
 The assigned IP is temporary and has a lease time. Befire it expires the client sends a DHCP request again to renew the lease.If the lease expires without renewal, the IP is returned to the pool for other devices.
 
