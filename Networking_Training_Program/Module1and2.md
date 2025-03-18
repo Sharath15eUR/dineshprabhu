@@ -329,6 +329,8 @@ lo        no wireless extensions.
 
 enp0s3    no wireless extensions.
 ```
+### Q9. Log in to your home router's web interface (usually at 192.168.1.1 or 192.168.0.1) and check the connected devices list.
+By accessing the home router's web interface with a username and password, users can review various network statistics. The interface displays details such as the number of connected devices along with their names. Additionally, under the statistics tab, users can view each device's IP address and the amount of bandwidth it has consumed.
 
 ### Q10. Explain how DHCP server assigns IP addresses to devices in your network
 A DHCP server automatically assigns IP addresses and other network configurations to devices over a network. This eliminates the need for a manual IP assignment and ensure there is no conflicts regarding the same. 
