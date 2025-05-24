@@ -1,0 +1,275 @@
+Q1)
+#include <stdio.h>
+#include <string.h>
+
+#define DAYS 7
+#define TASKS 3
+#define LEN 100
+
+struct Day {
+    char name[10];
+    char tasks[TASKS][LEN];
+    int count;
+};
+
+int main() {
+    struct Day week[DAYS] = {
+        {"Monday"}, {"Tuesday"}, {"Wednesday"},
+        {"Thursday"}, {"Friday"}, {"Saturday"}, {"Sunday"}
+    };
+
+    int choice;
+    char input[10];
+
+    do {
+        printf("\n1. Add New Task\n2. Display Tasks\n3. Exit\nEnter your choice : ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            printf("Enter day : ");
+            scanf("%s", input);
+
+            int found = 0;
+            for (int i = 0; i < DAYS; i++) {
+                if (strcasecmp(input, week[i].name) == 0) {
+                    found = 1;
+                    if (week[i].count >= TASKS) {
+                        printf("Task limit reached for %s!\n", week[i].name);
+                        break;
+                    }
+
+                    for (int j = week[i].count; j < TASKS; j++) {
+                        printf("Enter your Task for %s : ", week[i].name);
+                        getchar();
+                        fgets(week[i].tasks[j], LEN, stdin);
+                        week[i].tasks[j][strcspn(week[i].tasks[j], "\n")] = 0;
+
+                        if (strlen(week[i].tasks[j]) == 0) break;
+
+                        week[i].count++;
+                        printf("\nTask Added successfully!\n");
+                        printf("You can add %d tasks for %s\n", TASKS - week[i].count, week[i].name);
+
+                        if (week[i].count == TASKS) break;
+                    }
+                    break;
+                }
+            }
+            if (!found) {
+                printf("Invalid day entered!\n");
+            }
+
+        } else if (choice == 2) {
+            printf("\nTasks for the Week :\n");
+            for (int i = 0; i < DAYS; i++) {
+                printf("\n---%s---\n", week[i].name);
+                if (week[i].count == 0) {
+                    printf("  No tasks\n");
+                } else {
+                    for (int j = 0; j < week[i].count; j++) {
+                        printf("  - %s\n", week[i].tasks[j]);
+                    }
+                }
+            }
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
+
+Output:
+PS D:\dineshprabhu\Advance_C_Training_Program> gcc .\q1.c
+PS D:\dineshprabhu\Advance_C_Training_Program> .\a.exe   
+
+1. Add New Task
+2. Display Tasks
+3. Exit
+Enter your choice : 1
+Enter day : Monday
+Enter your Task for Monday : Attend Training Program
+
+Task Added successfully!
+You can add 2 tasks for Monday
+Enter your Task for Monday : 3
+
+1. Add New Task
+2. Display Tasks
+3. Exit
+Enter your choice : 1
+Enter day : Tuesday
+Enter your Task for Tuesday : Complete Assignment
+
+Task Added successfully!
+You can add 2 tasks for Tuesday
+Enter your Task for Tuesday : Push code into GitHub
+
+Task Added successfully!
+You can add 1 tasks for Tuesday
+Enter your Task for Tuesday : 3
+
+1. Add New Task
+2. Display Tasks
+3. Exit
+Enter your choice : 2
+
+Tasks for the Week :
+
+---Monday---
+  - Attend Training Program
+
+---Tuesday---
+  - Complete Assignment
+  - ush code into GitHub
+
+---Wednesday---
+  No tasks
+
+---Thursday---
+  No tasks
+
+---Friday---
+  No tasks
+
+---Saturday---
+  No tasks
+
+---Sunday---
+  No tasks
+
+1. Add New Task
+2. Display Tasks
+3. Exit
+Enter your choice : 3
+
+Q2)
+#include <stdio.h>
+
+void rearrangeArray(int arr[], int n) {
+    int temp[n];
+    int evenIndex = 0;
+
+   
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0) {
+            temp[evenIndex++] = arr[i];
+        }
+    }
+
+   
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 != 0) {
+            temp[evenIndex++] = arr[i];
+        }
+    }
+
+    
+    for (int i = 0; i < n; i++) {
+        arr[i] = temp[i];
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Element %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    rearrangeArray(arr, n);
+
+    printf("Rearranged Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+Output:
+PS D:\dineshprabhu\Advance_C_Training_Program> gcc q2.c
+PS D:\dineshprabhu\Advance_C_Training_Program> .\a.exe
+Enter the number of elements in the array: 6
+Enter the elements of the array:
+Element 1: 8
+Element 2: 9
+Element 3: 2
+Element 4: 7
+Element 5: 1
+Element 6: 6
+Original array: 8 9 2 7 1 6 
+Rearranged Array: 8 2 6 9 7 1
+
+Q3)
+#include <stdio.h>
+#include <stdbool.h>
+
+#define TRUE 1
+#define FALSE 0
+
+
+bool findKey(int mat[][100], int size, int target) {
+    int i = 0;
+    int j = size - 1;
+
+    while (i < size && j >= 0) {
+        if (mat[i][j] == target) {
+            return TRUE;
+        } else if (mat[i][j] > target) {
+            j--;  // move left
+        } else {
+            i++;  // move down
+        }
+    }
+    return FALSE;
+}
+
+int main() {
+    int n, key;
+    int matrix[100][100];
+
+    printf("Enter the size of the square matrix (n): ");
+    scanf("%d", &n);
+
+    printf("Enter the elements of the %d x %d matrix row by row (separated by spaces):\n", n, n);
+    for (int row = 0; row < n; row++) {
+        printf("Row %d: ", row + 1);
+        for (int col = 0; col < n; col++) {
+            scanf("%d", &matrix[row][col]);
+        }
+    }
+
+    printf("Enter the key to search: ");
+    scanf("%d", &key);
+
+    if (findKey(matrix, n, key)) {
+        printf("Key found in the matrix.\n");
+    } else {
+        printf("Key not found in the matrix.\n");
+    }
+
+    return 0;
+}
+
+Output:
+PS D:\dineshprabhu\Advance_C_Training_Program> gcc q3.c
+PS D:\dineshprabhu\Advance_C_Training_Program> .\a.exe
+Enter the size of the square matrix (n): 3
+Enter the elements of the 3 x 3 matrix row by row (separated by spaces):
+Row 1: 5 7 3
+Row 2: 6 1 2
+Row 3: 0 3 5
+Enter the key to search: 5
+Key found in the matrix.
